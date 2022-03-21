@@ -47,8 +47,8 @@ def csp_gate(policyversion):
         data = request.data.decode('utf-8')
         if data:
             logger.info(data)
-            splunk_hec_response = get_secret('splunk_hec_token_for_csp_index')
-            splunk_hec = json.loads(splunk_hec_response)['csp_hec']
+            splunk_hec_response = get_secret('secret_name')
+            splunk_hec = json.loads(splunk_hec_response)['keyname']
             if splunk_hec:
                 log_to_hec(data,splunk_hec,"_json",policyversion)
                 return f"Identified CSP violation {data}. Policy version: {policyversion}"
